@@ -1,0 +1,17 @@
+{
+  "restartable": "rs",
+  "verbose": false,
+  "ignore": [
+    "node_modules",
+    ".git"
+  ],
+  "env": {
+    "NODE_ENV": "development",
+    "BABEL_DISABLE_CACHE": 1
+  },
+  "execMap": {
+    "js": "babel-node"
+  },
+  "ext": "js",
+  "watch": "src/"
+}

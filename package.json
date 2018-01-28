@@ -1,0 +1,28 @@
+{
+  "name": "graphql-spotify",
+  "version": "0.0.1",
+  "description": "A GraphQL layer for Spotify API",
+  "main": "src/index.js",
+  "author": "William Duplenne",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon ./src/index.js",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "bunyan": "^1.8.12",
+    "convict": "^4.0.2",
+    "koa": "^2.4.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.0",
+    "nodemon": "^1.14.11"
+  }
+}
