@@ -8,12 +8,14 @@
   "private": true,
   "scripts": {
     "dev": "nodemon ./src/index.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "test": "NODE_ENV=development jest"
   },
   "dependencies": {
     "bunyan": "^1.8.12",
     "convict": "^4.0.2",
-    "koa": "^2.4.1"
+    "koa": "^2.4.1",
+    "koa-router": "^7.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -21,8 +23,14 @@
     "eslint": "^4.16.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.0",
+    "got-test": "^1.0.2",
+    "jest": "^22.1.4",
     "nodemon": "^1.14.11"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

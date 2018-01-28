@@ -3,5 +3,9 @@
   "rules": {
     "max-len": ["error", 120],
     "arrow-parens": 0
+  },
+  "plugins": ["jest"],
+  "env": {
+    "jest": true
   }
 }
