@@ -11,10 +11,10 @@ describe('app', () => {
     server.close(done);
   });
 
-  it('has Hello world! in the body', async () => {
+  it('has code 200', async () => {
     server = await app();
     const res = await request(server).get('/');
 
-    expect(res.body).toEqual('Hello world!');
+    expect(res.statusCode).toEqual(200);
   });
 });
