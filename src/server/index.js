@@ -1,18 +1,28 @@
 import Koa from 'koa';
 import Router from 'koa-router';
+import views from 'koa-views';
 
-import config from '../config';
+import spotifyAuth from './middlewares/spotifyAuth';
+import home from './middlewares/home';
+
+import { port } from '../config';
 import logger from '../logger';
 
 export default async () => {
-  const port = config.get('port');
-
   const app = new Koa();
+
+  app.use(views(`${__dirname}/views`, {
+    map: {
+      hbs: 'handlebars',
+    },
+    extension: 'hbs',
+  }));
+
   const router = new Router();
 
-  router.get('/', async ctx => {
-    ctx.body = 'Hello world!';
-  });
+  router.get('/', home());
+
+  router.get('/callback', spotifyAuth());
 
   app.use(router.routes());
   app.use(router.allowedMethods());

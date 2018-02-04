@@ -1,0 +1,15 @@
+<html>
+
+<head>
+  <title>{{title}}</title>
+</head>
+
+<body>
+  {{#unless isAuthorized}}
+  <a href={{authorizationCodeUri}}>
+    Connect with Spotify
+  </a>
+  {{/unless}}
+</body>
+
+</html>
