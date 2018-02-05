@@ -45,7 +45,7 @@ describe('Spotify authentification middleware', () => {
     expect(ctx.redirect).toHaveBeenCalled();
   });
 
-  it('throws error if state doesnt equal to initialState', async () => {
+  it("throws error if state doesn't equal to initialState", async () => {
     ctx.query.state = 'wrong state';
     await middleware(noop)(ctx, next);
 

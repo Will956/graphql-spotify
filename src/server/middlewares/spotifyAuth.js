@@ -10,21 +10,24 @@ export default () => async (ctx, next) => {
   const auth = encodeBase64(clientId, clientSecret);
 
   if (state === ctx.state.initialState) {
-    // eslint-disable-next-line
-    const { access_token, refresh_token } = await spotifyFetcher(fetch, logger)(
-      authorizationTokenURI,
-      'POST',
-      {},
-      `grant_type=authorization_code&code=${code}&redirect_uri=${redirectUri}`,
-      auth,
-    );
-
-    ctx.cookies.set('access_token', access_token);
-    ctx.cookies.set('refresh_token', refresh_token);
+    try {
+      // eslint-disable-next-line
+      const { access_token, refresh_token } = await spotifyFetcher(fetch, logger)(
+        authorizationTokenURI,
+        'POST',
+        {},
+        `grant_type=authorization_code&code=${code}&redirect_uri=${redirectUri}`,
+        auth,
+      );
+      ctx.cookies.set('access_token', access_token);
+      ctx.cookies.set('refresh_token', refresh_token);
+    } catch (err) {
+      logger.error(err);
+    }
   } else {
     logger.error('Error in state');
   }
 
   ctx.redirect('/');
-  await next();
+  await next(ctx);
 };
