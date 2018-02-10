@@ -4,7 +4,7 @@ import logger from '../../logger';
 import { encodeBase64, spotifyFetcher } from '../../utils';
 import { authorizationTokenURI, clientId, clientSecret, redirectUri } from '../../config';
 
-export default () => async (ctx, next) => {
+export default () => async ctx => {
   const { code, state } = ctx.query;
   ctx.state.initialState = ctx.cookies.get('state');
   const auth = encodeBase64(clientId, clientSecret);
@@ -22,14 +22,13 @@ export default () => async (ctx, next) => {
       ctx.cookies.set('access_token', access_token);
       ctx.cookies.set('refresh_token', refresh_token);
     } catch (err) {
-      ctx.redirect('/');
       logger.error(err);
+      return ctx.redirect('/');
     }
   } else {
-    ctx.redirect('/');
     logger.error('Error in state');
+    return ctx.redirect('/');
   }
 
-  ctx.redirect('/graphiql');
-  await next(ctx);
+  return ctx.redirect('/graphiql');
 };
