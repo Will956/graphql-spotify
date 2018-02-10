@@ -12,6 +12,10 @@ export default () => async ctx => {
     stateArg: state,
   };
 
+  if (isAuthorized) {
+    return ctx.redirect('/graphiql');
+  }
+
   return ctx.render('index', {
     title: 'GraphQL layer for Spotify.',
     authorizationCodeUri: `${authorizationCodeURI}&client_id=${clientId}&scope=${scope}&redirect_uri=${redirectUri}&state=${state}&show_dialog=true`, // eslint-disable-line

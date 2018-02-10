@@ -1,19 +1,28 @@
+import { authorizationTokenURI } from '../config';
 // eslint-disable-next-line
-export const encodeBase64 = (clientId, clientSecret) => Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+export const encodeBase64 = (clientId, clientSecret) =>
+  `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString('base64')}`;
 
-export const spotifyFetcher = (fetch, logger) => async (uri, method, headers = {}, body, auth) =>
-  fetch(uri, {
+export const spotifyFetcher = (fetch, logger) => async (uri, method, headers = {}, body, auth) => {
+  let contentType = 'application/json';
+
+  if (uri === authorizationTokenURI) {
+    contentType = 'application/x-www-form-urlencoded';
+  }
+
+  return fetch(uri, {
     method,
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-      authorization: `Basic ${auth}`,
+      'Content-Type': contentType,
+      authorization: auth,
       ...headers,
     },
     body,
   })
     .then(response => {
       if (!response.ok) {
-        throw Error(response.statusText);
+        logger.error(response.statusText);
+        return response.json();
       }
       logger.info('Data fetched');
       return response.json();
@@ -21,3 +30,4 @@ export const spotifyFetcher = (fetch, logger) => async (uri, method, headers = {
     .catch(err => {
       logger.error(err);
     });
+};

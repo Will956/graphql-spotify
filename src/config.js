@@ -14,6 +14,12 @@ const config = convict({
     env: 'PORT',
   },
   spotifyApi: {
+    baseUrl: {
+      doc: 'Base URL for Spotify API',
+      format: String,
+      default: 'https://api.spotify.com/v1',
+      env: 'BASE_URL',
+    },
     authorizationCodeURI: {
       doc: 'Authorization Code URI',
       format: String,
@@ -59,6 +65,7 @@ config.loadFile(`./config/${env}.json`);
 config.validate({ allowed: 'strict' });
 
 export const port = config.get('port');
+export const baseUrl = config.get('spotifyApi.baseUrl');
 export const authorizationCodeURI = config.get('spotifyApi.authorizationCodeURI');
 export const authorizationTokenURI = config.get('spotifyApi.authorizationTokenURI');
 export const clientId = config.get('spotifyApi.clientId');

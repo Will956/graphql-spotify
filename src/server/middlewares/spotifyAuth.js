@@ -22,12 +22,14 @@ export default () => async (ctx, next) => {
       ctx.cookies.set('access_token', access_token);
       ctx.cookies.set('refresh_token', refresh_token);
     } catch (err) {
+      ctx.redirect('/');
       logger.error(err);
     }
   } else {
+    ctx.redirect('/');
     logger.error('Error in state');
   }
 
-  ctx.redirect('/');
+  ctx.redirect('/graphiql');
   await next(ctx);
 };
