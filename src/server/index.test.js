@@ -2,6 +2,10 @@ import { gotServer } from 'got-test';
 
 import app from './';
 
+jest.mock('../logger', () => ({
+  info: jest.fn(),
+}));
+
 const request = server => gotServer(server);
 
 describe('app', () => {

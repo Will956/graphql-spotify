@@ -6,7 +6,6 @@ jest.mock('../../utils', () => ({
 }));
 
 jest.mock('../../logger', () => ({
-  debug: jest.fn(),
   error: jest.fn(),
 }));
 
