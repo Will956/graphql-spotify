@@ -13,6 +13,7 @@ describe('Home middleware', () => {
       stateArg: undefined,
     },
     render: jest.fn(),
+    redirect: jest.fn(),
   };
   const noop = () => {};
   randomString.generate = jest.fn(() => '1234');
@@ -34,6 +35,15 @@ describe('Home middleware', () => {
     expect(ctx.cookies.get).toHaveBeenCalledWith('refresh_token');
     expect(ctx.cookies.get).toHaveBeenCalledTimes(2);
     expect(ctx.state.isAuthorized).toBe(true);
+  });
+
+  it('redirects to /graphiql if isAuthorized is true', async () => {
+    ctx.cookies.get = jest.fn(() => true);
+
+    await middleware(noop)(ctx);
+
+    expect(ctx.state.isAuthorized).toBe(true);
+    expect(ctx.redirect).toHaveBeenCalledWith('/graphiql');
   });
 
   it('sets stateArg to a cookie', async () => {
