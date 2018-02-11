@@ -1,8 +1,27 @@
 type Query {
-  me: Me
+  me: User
+  userById(id: ID!): User
 }
 
-type Me {
+type User {
   id: String
+  uri: String
   name: String
+  birthdate: String
+  country: String
+  email: String
+  externalUrl: String
+  href: String
+  type: String
+  product: String
+  followers: Follower
+  images: [Image]
+}
+
+type Follower {
+  total: Int
+}
+
+type Image {
+  url: String
 }
