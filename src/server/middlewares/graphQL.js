@@ -1,7 +1,6 @@
 import { makeExecutableSchema } from 'graphql-tools';
 
-import typeDefs from '../schemas/schema.graphql';
-import resolvers from '../resolvers';
+import { typeDefs, resolvers } from '../resolvers';
 
 export default () => async ctx => ({
   schema: makeExecutableSchema({

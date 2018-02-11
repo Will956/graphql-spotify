@@ -1,10 +1,8 @@
-import spotifyAPI from '../connectors';
+import { mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 
-export default {
-  Query: {
-    me: (root, args, context) => spotifyAPI('/me', context),
-  },
-  Me: {
-    name: ({ display_name }) => display_name, // eslint-disable-line
-  },
-};
+import usersResolver from './users';
+import usersType from './users/schema.graphql';
+
+export const typeDefs = mergeTypes([usersType]);
+
+export const resolvers = mergeResolvers([usersResolver]);
