@@ -24,6 +24,7 @@ export const spotifyFetcher = (fetch, logger) => async (uri, method, headers = {
         logger.error(response.statusText);
         return response.json();
       }
+      logger.info(`Requested ${uri}`);
       logger.info('Data fetched');
       return response.json();
     })
