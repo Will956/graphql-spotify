@@ -3,10 +3,17 @@
   "version": "2.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src --exec ts-node src -e ts,gql",
+    "build": "tsc -p ."
   },
   "dependencies": {
     "apollo-server": "^2.11.0",
     "graphql": "^14.6.0"
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.5.0",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
   }
 }
