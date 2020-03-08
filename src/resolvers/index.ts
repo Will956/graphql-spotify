@@ -16,5 +16,8 @@ const books: Array<{ title: string; author: string }> = [
 export const resolvers: IResolvers<any, any> = {
   Query: {
     books: () => books,
+    me: async (_source, _args, { dataSources }) => {
+      return dataSources.SpotifyAPI.getMe();
+    },
   },
 };
