@@ -1,9 +1,0 @@
-{
-  "spotifyApi": {
-    "clientId": "your client id",
-    "clientSecret": "your client secret",
-    "redirectUri": "http://localhost:3000/callback",
-    "scope":
-      "user-read-private,user-read-birthdate,user-read-email,playlist-read-private,user-library-modify,playlist-read-collaborative,playlist-modify-private,user-follow-modify,user-read-currently-playing,user-read-currently-playing,user-library-read,user-top-read,playlist-modify-public,user-follow-read,user-read-playback-state,user-modify-playback-state"
-  }
-}
