@@ -2,6 +2,8 @@
 
 A simple GraphQL layer for Spotify API built with Apollo Server.
 
+If you want to see the first version of it, https://github.com/Will956/graphql-spotify/tree/v1.0.
+
 ## Goal
 
 This project is not about implement all query for the Spotify API. It's about having fun with setup it thanks to Apollo 🤓.
