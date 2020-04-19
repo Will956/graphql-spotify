@@ -17,3 +17,18 @@ npm install
 # run the app
 npm run dev
 ```
+
+## Use the app
+
+Then you need to authenticate throught the Spotify API, simply execute that query
+
+```
+{
+  login {
+    url
+  }
+}
+
+```
+
+and copy/paste returned url to your browser to get logged in!
